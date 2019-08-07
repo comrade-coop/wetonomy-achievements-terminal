@@ -8,9 +8,9 @@ export const setVisibilityFilter = filter => ({
   filter
 })
 
-export const toggleTodo = id => ({
-  type: 'TOGGLE_TODO',
-  id
+export const fetchRequest = post => ({
+  type: 'FETCH_REQUEST',
+  post
 })
 
 export const VisibilityFilters = {

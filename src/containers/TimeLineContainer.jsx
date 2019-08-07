@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import TimeLineBox from '../components/TimeLineBox'
 import TimeLineActions from '../components/TimeLineActions'
-import { addPost }  from '../actions'
+import { fetchRequest }  from '../actions'
 
 class TimeLineContainer extends Component {
   
   onAddTimelinePost = (post) => {
     const { dispatch } = this.props
-    dispatch(addPost(post))
+    dispatch(fetchRequest(post))
   }
 
   render() {

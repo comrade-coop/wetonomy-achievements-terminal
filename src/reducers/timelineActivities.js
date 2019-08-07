@@ -24,11 +24,10 @@ const initialState = [
 const timelineActivities = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TIMELINE_POST':
-      return handleAddPost(state, action.post)
-    case 'TOGGLE_TODO':
-      return state.map(todo =>
-        todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-      )
+      return handleAddPost(state, {
+        reward: 125,
+        type: TimeLineTypes.Achievement,
+        description: ` Received from flutter: ${action.description}`,})
     default:
       return state
   }
