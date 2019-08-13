@@ -8,14 +8,21 @@ import { fetchRequest }  from '../actions'
 class TimeLineContainer extends Component {
   
   onAddTimelinePost = (post) => {
+    const address = this.props.info.find((item) => item.name === "AchievementsContract").address
     const { dispatch } = this.props
-    dispatch(fetchRequest(post))
+    dispatch(fetchRequest("ADD_TIMELINE_POST", address, post))
+  }
+
+  onAddReward = (post) => {
+    const address = this.props.info.find((item) => item.name === "AllowanceTokenContract").address
+    const { dispatch } = this.props
+    dispatch(fetchRequest("ADD_REWARD", address, post))
   }
 
   render() {
     console.log(this.props)
     const activities = this.props.timelineActivities.map((activity, index) => {
-      return <TimeLineBox key={index} {...activity}/>
+      return <TimeLineBox key={index} {...activity} addReward={this.onAddReward}/>
     })
     
     return (
@@ -28,6 +35,7 @@ class TimeLineContainer extends Component {
   }
 }
 const mapStateToProps = state => ({
+  info: state.info,
   timelineActivities: state.timelineActivities
 })
 

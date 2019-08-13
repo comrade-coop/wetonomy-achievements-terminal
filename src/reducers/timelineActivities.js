@@ -5,19 +5,39 @@ const initialState = [
     reward: 125,
     type: TimeLineTypes.Achievement,
     description: " It is a long established fact that a reader will be distracted by the readable content of ",
-    image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdy1hKEOA-aB87ddJq9Vq-IedDSnyuJgIY1izBIkyttvB54hmj"
+    image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdy1hKEOA-aB87ddJq9Vq-IedDSnyuJgIY1izBIkyttvB54hmj",
+    rewardsList:[
+      {
+        reward: 50,
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2%2C_2013.jpg/220px-Dwayne_Johnson_2%2C_2013.jpg",
+        comment: "Lorem ipsum",
+      },
+      {
+        reward: 50,
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2%2C_2013.jpg/220px-Dwayne_Johnson_2%2C_2013.jpg",
+        comment: "Lorem ipsum",
+      }
+    ]
   },
   {
     reward: 500,
     type: TimeLineTypes.Reward,
     description: " It is a long established fact that a reader will be distracted by the readable content of ",
-    image : "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2%2C_2013.jpg/220px-Dwayne_Johnson_2%2C_2013.jpg"
+    image : "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2%2C_2013.jpg/220px-Dwayne_Johnson_2%2C_2013.jpg",
+    rewardsList:[]
   },
   {
     reward: 600,
-    type: TimeLineTypes.Proposition,
+    type: TimeLineTypes.Achievement,
     description: " It is a long established fact that a reader will be distracted by the readable content of ",
-    image : "https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg?w=250"
+    image : "https://sophosnews.files.wordpress.com/2014/04/anonymous-250.jpg?w=250",
+    rewardsList:[
+      {
+        reward: 50,
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2%2C_2013.jpg/220px-Dwayne_Johnson_2%2C_2013.jpg",
+        comment: "Lorem ipsum",
+      }
+    ]
   }
 ]
 

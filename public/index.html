@@ -38,7 +38,12 @@
     -->
     <script>
       function receiveMessageFromNative(result) {
-        window.store.dispatch(result)
+        var contract = window.store.getState().info.find( (item) => 
+          item.address == result.address
+        )
+        window.store.dispatch({type: contract.name, data: result.state})
+        
+        console.log(result, contract)
       }
     </script>
   </body>

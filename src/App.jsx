@@ -1,12 +1,30 @@
 import React from 'react';
-// import PlaceHolder from './PlaceHolder';
 import TimeLineContainer from './containers/TimeLineContainer';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#1e88e5',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
 
 function App() {
-  // const mainScreen = <TimeLineContainer variant="contained" color="primary"> Hello World </TimeLineContainer>
   return (
-    // <PlaceHolder screen = {mainScreen}/>
-    <TimeLineContainer variant="contained" color="primary"/>
+    <ThemeProvider theme={theme}>
+      <TimeLineContainer variant="contained" color="primary"/>
+    </ThemeProvider>
   );
 }
 

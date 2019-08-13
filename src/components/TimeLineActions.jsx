@@ -71,11 +71,12 @@ class TimeLineActions extends Component {
             </FlexRow>
             <FlexRow>
               <PostButtonBox>
-                <Button color="inherit" onClick = {this.handleAddPost}>
+                <Button color="primary" variant="contained"   onClick = {this.handleAddPost}>
                     <span style={{textTransform: "none"}}>  Post {this._getActivity(this.state.timeline)}</span>
                   <Icon>keyboard_arrow_right</Icon>
-                  </Button>
+                </Button>
               </PostButtonBox>
+              
             </FlexRow>
           </Content>
       </Achievement>
@@ -88,14 +89,9 @@ TimeLineActions.propTypes = {
 }
 
 const PostButtonBox = styled.div`
-  margin-top: 20px;
-  min-width: 200px;
-  background: #1e88e5;
-  color: #fff;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 4px 0px rgba(33,150,243,1);
-  -moz-box-shadow: 0px 0px 4px 0px rgba(33,150,243,1);
-  box-shadow: 0px 0px 4px 0px rgba(33,150,243,1);
+  // -webkit-box-shadow: 0px 0px 4px 0px rgba(33,150,243,1);
+  // -moz-box-shadow: 0px 0px 4px 0px rgba(33,150,243,1);
+  // box-shadow: 0px 0px 4px 0px rgba(33,150,243,1);
 `
 
 const Content = styled.div`
