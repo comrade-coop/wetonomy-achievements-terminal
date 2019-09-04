@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import TimeLineContainer from './containers/TimeLineContainer';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import InitialScreen from "./containers/InitialScreen"
 
 const theme = createMuiTheme({
   palette: {
@@ -20,12 +22,21 @@ const theme = createMuiTheme({
   },
 });
 
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <TimeLineContainer variant="contained" color="primary"/>
-    </ThemeProvider>
-  );
+class App extends Component {
+  render(){
+    let content = <InitialScreen/>
+    if(this.props.info.initialized) content = <TimeLineContainer variant="contained" color="primary"/>
+    
+    return (
+      <ThemeProvider theme={theme}>
+        {content}
+      </ThemeProvider>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  info: state.info,
+})
+
+export default connect(mapStateToProps)(App);

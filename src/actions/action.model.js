@@ -1,6 +1,6 @@
 export default class Action {
-	constructor(target, actionName, parameters){
-		this.target = target
+	constructor(targets, actionName, parameters){
+		this.targets = [targets]
 		this.actionName = actionName
 		this.parameters = parameters
 	}

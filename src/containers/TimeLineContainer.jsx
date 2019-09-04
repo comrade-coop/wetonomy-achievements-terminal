@@ -5,16 +5,16 @@ import TimeLineBox from '../components/TimeLineBox'
 import TimeLineActions from '../components/TimeLineActions'
 import { fetchRequest }  from '../actions'
 
-class TimeLineContainer extends Component {
+class TimeLineContainer extends Component {  
   
   onAddTimelinePost = (post) => {
-    const address = this.props.info.find((item) => item.name === "AchievementsContract").address
+    const address = this.props.info.contracts.find((item) => item.name === "AchievementsContract").address
     const { dispatch } = this.props
     dispatch(fetchRequest("ADD_TIMELINE_POST", address, post))
   }
 
   onAddReward = (post) => {
-    const address = this.props.info.find((item) => item.name === "AllowanceTokenContract").address
+    const address = this.props.info.contracts.find((item) => item.name === "AllowanceTokenContract").address
     const { dispatch } = this.props
     dispatch(fetchRequest("ADD_REWARD", address, post))
   }

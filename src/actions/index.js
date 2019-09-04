@@ -12,3 +12,22 @@ export const fetchRequest = (name, address, post) => ({
   address,
   post
 })
+
+export const contractTypeRequest = (contractType) => ({
+  type: 'CONTRACT_TYPE_REQUEST',
+  contractType
+})
+
+export const initialRequest = (contractName) => ({
+  type: 'INITIAL_REQUEST',
+  contractName
+})
+
+export const addressSelect = (contract) => ({
+  type: 'ADDRESS_SELECT',
+  contract
+})
+
+export const contractsInitialized = () => ({
+  type: 'CONTRACTS_INITIALIZED'
+})
