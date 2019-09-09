@@ -37,13 +37,49 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script>
-      function StrongForce__receiveMessageFromNative(result) {
-        var contract = window.store.getState().info.find( (item) => 
-          item.address == result.address
+      function StrongForce__receiveActionFromNative(result) {
+        var updated = JSON.parse(result).contracts[0]
+        var contract = window.store.getState().info.contracts.find( (item) => 
+          item.address == updated.address
         )
-        window.store.dispatch({type: contract.name, data: result.state})
+        if(contract) {
+          console.log(result)
+          window.store.dispatch({type: "CONTRACT_STATE", contract: {...contract,state: updated.state}})
+        }
         
-        console.log(result, contract)
+        // console.log(contract)
+        // var updatedContractsAddresses = JSON.parse(result).contracts.map(x => x.address)
+        // var updatedContracts = JSON.parse(result).contracts
+        // window.store.getState().info.contracts.find( (item) => {
+        //   if(updatedContractsAddresses.includes(item.address)){
+        //     var contract = updatedContracts.find(x => x.address === item.address)
+        //     if(contract)
+        //     window.store.dispatch({type: "CONTRACT_STATE", contract: {...item,state: result.state}})
+        //   }
+        // })
+        
+      }
+
+      function StrongForce__receiveQueryFromNative(result) {
+        var data = JSON.parse(result)
+        if(data.result){
+          var url = data.query.url.split('/')
+          var type = url[2];
+          console.log(type)
+          switch(type){
+            case "state":{
+              var address = url[3]
+              var contract = window.store.getState().info.contracts.find( (item) => 
+                item.address == address
+              )
+              if(contract) {
+                window.store.dispatch({type: "CONTRACT_STATE", contract: {...contract,state: data.result}})
+              }
+            }
+          }
+        }
+        
+        
       }
     </script>
   </body>

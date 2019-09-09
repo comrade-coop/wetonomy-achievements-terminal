@@ -3,34 +3,34 @@ import * as Api from './api'
 
 
 function* watchPostAction() {
-  yield takeEvery('FETCH_REQUEST', postAction)
+  yield takeEvery('SEND_ACTION', postAction)
 }
 
-function* watchInitialRequest() {
-  yield takeEvery('INITIAL_REQUEST', initialRequest)
-}
-
-function* watchTypeRequest() {
-  yield takeEvery('CONTRACT_TYPE_REQUEST', typeRequest)
+function* watchPostQuery() {
+  yield takeEvery('SEND_QUERY', sendQuery)
 }
 
 export function* postAction(action) {
-  yield Api.sendPostAction(action)
+  yield Api.sendAction(action)
 }
 
-export function* initialRequest(action) {
-  yield Api.loadInitialState(action)
+export function* sendQuery(type) {
+  yield Api.sendQuery(type)
 }
+// function* watchInitialRequest() {
+//   yield takeEvery('INITIAL_REQUEST', initialRequest)
+// }
 
-export function* typeRequest(type) {
-  yield Api.sendTypeRequest(type)
-}
+// export function* initialRequest(action) {
+//   yield Api.loadInitialState(action)
+// }
+
 
 export default function* rootSaga() {
   yield all([
     watchPostAction(),
-    watchInitialRequest(),
-    watchTypeRequest
+    watchPostQuery(),
+    // watchInitialRequest(),
     // other generator functions
   ])
 }

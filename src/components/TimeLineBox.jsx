@@ -30,8 +30,8 @@ class TimeLineBox extends Component {
 	// 	}
 	// }
 
-	_getStarButton = (props2) => {
-		switch(props2.type)
+	_getStarButton = (props) => {
+		switch(props.type)
 		{
 			case TimeLineTypes.Achievement: return   <ButtonContent style={{textTransform: "none"}}><Icon>star_border</Icon> &nbsp;Add on</ButtonContent>
 			case TimeLineTypes.Reward: return  <ButtonContent style={{textTransform: "none"}}><Icon>star</Icon> &nbsp;Add On</ButtonContent>
@@ -73,7 +73,7 @@ class TimeLineBox extends Component {
 					<Reward>+{this.props.reward}</Reward>
 					<ImgBox><RoundedImg width="40" height="40" src={this.props.image || DEFAULT_PROFILE_PICTURE} alt=""/></ImgBox>
 					{/* {this._getHeading(this.props)} */}
-					<Heading>Mike</Heading>
+					<Heading>{this.props.name}</Heading>
 					<HourBatch>1 hour ago</HourBatch>
 
 					<Button style={{minWidth: "10px",width:"5px"}} color="primary">

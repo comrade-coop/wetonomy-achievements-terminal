@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ContractAddressSelect from "../components/ContractAddressSelect"
-import { contractTypeRequest, addressSelect, contractsInitialized } from '../actions/index'
+import { contractTypeRequest, addressSelect, contractsInitialized, sendStateQuery } from '../actions/index'
 
 
 
@@ -11,6 +11,7 @@ class InitialScreen extends Component {
     contract.address = address
     const { dispatch } = this.props
     dispatch(addressSelect(contract))
+    dispatch(sendStateQuery(address))
   }
 
   contractTypeRequest = (contractName) => {

@@ -2,10 +2,14 @@ const initialState = {
   contracts:[
     {
       address: null,
-      avaiableAddresses: ["0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21"],
+      avaiableAddresses: ["cpdu6PE"],//["0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21"],
       name: "AchievementsContract",
       contractName: "AchieventFactory",
-      state: {}
+      state: {
+        State: {
+          Achievements: []
+        }
+      }
     },
     {
       address: null,

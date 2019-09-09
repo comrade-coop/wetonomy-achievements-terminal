@@ -15,6 +15,7 @@ class TimeLineActions extends Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
+    // this.buttonDOM = React.createRef();
     this.state = initialState;
   }
   
@@ -27,10 +28,14 @@ class TimeLineActions extends Component {
     this.setState({ textInput: event.target.value });
   }
 
-  handleAddPost = () => {
+  handleAddPost = (event) => {
+    console.log(this.buttonDOM)
+    console.log(event)
+    // this.buttonDOM.blur();
     this.props.addPost({
       description: this.state.textInput,
       type: this.state.timeline,
+      Recipients: ["BB"],
       reward: 0
     })
     this.setState(initialState);
@@ -71,10 +76,12 @@ class TimeLineActions extends Component {
             </FlexRow>
             <FlexRow>
               <PostButtonBox>
-                <Button color="primary" variant="contained"   onClick = {this.handleAddPost}>
+                <ButtonH
+                ref={(buttonDOM) => { this.buttonDOM = buttonDOM; }}
+                color="primary" variant="contained"  onClick = {this.handleAddPost}>
                     <span style={{textTransform: "none"}}>  Post {this._getActivity(this.state.timeline)}</span>
                   <Icon>keyboard_arrow_right</Icon>
-                </Button>
+                </ButtonH>
               </PostButtonBox>
               
             </FlexRow>
@@ -87,6 +94,12 @@ class TimeLineActions extends Component {
 TimeLineActions.propTypes = {
   addPost: PropTypes.func.isRequired,
 }
+
+const ButtonH = styled(Button)`
+  :focus{
+    background:#2196f3 !important;
+  }
+`
 
 const PostButtonBox = styled.div`
   // -webkit-box-shadow: 0px 0px 4px 0px rgba(33,150,243,1);
@@ -126,7 +139,7 @@ const Action = styled.div`
   flex-direction: row;
   justify-content: center;
   background: #f7f7f7;
-  border-radius: 50px;
+  border-radius: 5px;
   margin: 0px 3px;
 `
 
