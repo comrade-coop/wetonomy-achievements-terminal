@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
   contracts:[
     {
       address: null,
@@ -13,7 +13,7 @@ const initialState = {
     },
     {
       address: null,
-      avaiableAddresses: ["0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21"],
+      avaiableAddresses: ["xbLnbgs"] ,// ["0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21"],
       name: "ContributionTokenContract",
       contractName: "ContributionTokenContract",
       subContractOf: "AchievementsContract",
@@ -22,7 +22,7 @@ const initialState = {
     },
     {
       address: null,
-      avaiableAddresses: ["0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21"],
+      avaiableAddresses: ["i_PNa7I"] ,//["0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21", "0x89123asd123sad12ae21"],
       name: "AllowanceTokenContract",
       contractName: "AllowanceTokenContract",
       subContractOf: "AchievementsContract",
@@ -33,7 +33,7 @@ const initialState = {
 
 }
 
-const contractsInfo = (state = initialState, action) => {
+const initialInfo = (state = initialState, action) => {
   switch (action.type) {
     case "INITIAL_INFO": return initialState
     case "ADDRESS_SELECT": return contractAddressSelect(state, action.contract)
@@ -60,4 +60,4 @@ const contractState = (state, contract) => {
   return {...state, contracts: temp}
 }
 
-export default contractsInfo
+export default initialInfo

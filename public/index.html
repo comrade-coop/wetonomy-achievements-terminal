@@ -36,50 +36,61 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <!-- // console.log(contract)
+    // let updatedContractsAddresses = JSON.parse(result).contracts.map(x => x.address)
+    // let updatedContracts = JSON.parse(result).contracts
+    // window.store.getState().info.contracts.find( (item) => {
+    //   if(updatedContractsAddresses.includes(item.address)){
+    //     let contract = updatedContracts.find(x => x.address === item.address)
+    //     if(contract)
+    //     window.store.dispatch({type: "CONTRACT_STATE", contract: {...item,state: result.state}})
+    //   }
+    // }) -->
     <script>
-      function StrongForce__receiveActionFromNative(result) {
-        var updated = JSON.parse(result).contracts[0]
-        var contract = window.store.getState().info.contracts.find( (item) => 
+      function StrongForce__receiveActionFromNative(result){
+        const updated = JSON.parse(result).contracts[0]
+        const contract = window.store.getState().info.contracts.find( (item) => 
           item.address == updated.address
         )
         if(contract) {
-          console.log(result)
+          // console.log(result)
           window.store.dispatch({type: "CONTRACT_STATE", contract: {...contract,state: updated.state}})
         }
-        
-        // console.log(contract)
-        // var updatedContractsAddresses = JSON.parse(result).contracts.map(x => x.address)
-        // var updatedContracts = JSON.parse(result).contracts
-        // window.store.getState().info.contracts.find( (item) => {
-        //   if(updatedContractsAddresses.includes(item.address)){
-        //     var contract = updatedContracts.find(x => x.address === item.address)
-        //     if(contract)
-        //     window.store.dispatch({type: "CONTRACT_STATE", contract: {...item,state: result.state}})
-        //   }
-        // })
-        
+        if(updated.state.Type.includes("Wetonomy.Achievements.Achievement, Achievements,")){
+          window.store.dispatch({type: "UPDATE_TIMELINE_POST", post: {address: updated.address,...updated.state.State}})
+        } 
       }
 
-      function StrongForce__receiveQueryFromNative(result) {
-        var data = JSON.parse(result)
+      function StrongForce__receiveQueryFromNative(result){
+        const data = JSON.parse(result)
         if(data.result){
-          var url = data.query.url.split('/')
-          var type = url[2];
-          console.log(type)
+          const url = data.query.url.split('/')
+          const type = url[2];
           switch(type){
             case "state":{
-              var address = url[3]
-              var contract = window.store.getState().info.contracts.find( (item) => 
-                item.address == address
-              )
-              if(contract) {
-                window.store.dispatch({type: "CONTRACT_STATE", contract: {...contract,state: data.result}})
+              const address = url[3]
+              if(data.result.Type.includes("Wetonomy.Achievements.Achievement, Achievements,"))
+                window.store.dispatch({type: "ADD_TIMELINE_POST", post: {address: address,...data.result.State}})
+              else{
+                const contract = window.store.getState().info.contracts.find( (item) => 
+                  item.address == address
+                )
+                if(contract) {
+                  window.store.dispatch({type: "CONTRACT_STATE", contract: {...contract,state: data.result}})
+                }
               }
+              break;
             }
           }
         }
-        
-        
+      }
+      
+      function StrongForce__snackbarNotification(result){
+        window.store.dispatch({
+          type: "OPEN",
+          snackbar: {open: false, type: "info", message: "Action sent to Blockchain"}
+        })
       }
     </script>
   </body>

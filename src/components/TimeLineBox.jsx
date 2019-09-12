@@ -17,7 +17,7 @@ class TimeLineBox extends Component {
 	constructor(props){
 		super(props)
 		this.rewardInput = React.createRef();
-		this.state = {open: false, textInput: "+500"}
+		this.state = {open: false, textInput: ""}
 	}
 
 	// _getHeading = (props2) => {
@@ -52,18 +52,27 @@ class TimeLineBox extends Component {
 
 	handleStarButtonClick = () => {
 		this.setState({open: !this.state.open})
-		setTimeout(() => {
-			if(this.state.open) this.rewardInput.current.focus()
-			else this.rewardInput.current.blur()
-		}, 300)
-	}
+  }
+  
+  handleChange = (event) => {
+    this.setState({textInput: event.target.value});
+  }
+
+  onInputFocus = () => {
+    if(this.state.textInput==="")
+      this.setState({textInput: "+"});
+  }
 
 	handleAddReward = () => {
+    console.log(this.rewardInput)
 		this.props.addReward({
-			reward: this.state.textInput,
-			post: 0
+			reward: parseInt(this.state.textInput),
+			address: this.props.address
     })
-    this.setState({textInput: "Reward Given"});
+    
+    setTimeout(() => {
+			this.setState({textInput: ""});
+		}, 200)
 	}
 
 	render() {
@@ -96,8 +105,12 @@ class TimeLineBox extends Component {
 				<Collapse in={this.state.open}>
 					{this._generateRewardsList(this.props.rewardsList)}
 					<CollapseFlexRow>
-						<Input fullWidth={true} autoFocus={true} placeholder={this.state.textInput}
-								inputRef={this.rewardInput} disableUnderline={true}/>
+            <Input fullWidth={true} autoFocus={false}
+                placeholder={"+500"}
+                value={this.state.textInput}
+                onChange={this.handleChange} 
+                onFocus={ this.onInputFocus}
+								disableUnderline={true}/>
 						<Button onClick={this.handleAddReward} color="primary" variant="contained" style={{textTransform: "none"}}>Give</Button>
 					</CollapseFlexRow>
 				</Collapse>
@@ -178,7 +191,8 @@ const CollapseFlexRow = styled(FlexRow)`
 
 const Reward = styled.div`
 	border-radius: 50px;
-	background: #93bbff;
+  background: #93bbff;
+  min-width: 40px;
 	height: 40px;
 	color: white;
 	display: flex;

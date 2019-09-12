@@ -9,3 +9,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.all-active-criterias {
+  /* background: #93bbff; */
+}
+
+.active-criteria {
+  background: #f6f6f6;
+  color: #2196f3;
+  font-weight: bold;
+}
+.example-component.show {
+  opacity: 1;
+  visibility: visible; 
+}

@@ -1,10 +1,9 @@
 import Action from "./actions/action.model"
 import InitialRequest from "./actions/initialRequest.model"
 import Query from "./actions/query.model"
-import { mapActionTypesToNames } from "./actions/index"
 
 export const sendAction = (obj) => {
-	var action = new Action(obj.address, mapActionTypesToNames(obj.name), obj.post)
+	var action = new Action(obj.address, obj.name, obj.payload)
 	console.log(action)
 	sendPostMessageAction(action)
 }
@@ -22,13 +21,13 @@ export const sendQuery = (obj) => {
 const sendPostMessageQuery = (msg) => {
 	if(window.StrongForceQueryChannel)
 		window.StrongForceQueryChannel.postMessage(JSON.stringify(msg));
-	else throw new Error('Not in mobile app');
+	// else throw new Error('Not in mobile app');
 }
 
 const sendPostMessageAction = (msg) => {
 	if(window.StrongForceActionChannel)
 		window.StrongForceActionChannel.postMessage(JSON.stringify(msg));
-	else throw new Error('Not in mobile app');
+	// else throw new Error('Not in mobile app');
 	// {
 	// 	var init = {
 	// 		address: "cpdu6PE",

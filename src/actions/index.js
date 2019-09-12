@@ -1,9 +1,6 @@
-export const mapActionTypesToNames = (type) => {
-	switch(type){
-    case "ADD_TIMELINE_POST": return "CreateAchievement"
-    case "ADD_REWARD": return "TokenTransfer"
-		default: return ""
-	}
+export const actions = {
+  ADD_TIMELINE_POST: "CreateAchievement",
+  ADD_REWARD: "TransferTokens",
 }
 
 // Internal Actions
@@ -12,18 +9,34 @@ export const contractsInitialized = () => ({
   type: 'CONTRACTS_INITIALIZED'
 })
 
-// Api Actions
-
-export const sendAction = (name, address, post) => ({
-  type: 'SEND_ACTION',
-  name,
-  address,
-  post
+export const openSnackbar = (snackbar) => ({
+  type: 'OPEN',
+  snackbar
 })
 
-export const sendQuery = (query) => ({
-  type: 'SEND_QUERY',
-  query
+export const closeSnackbar = () => ({
+  type: 'CLOSE'
+})
+
+
+
+
+
+
+// Api Actions
+
+export const addTimelinePost = (address, Describtion, Recipients) => ({
+  type: 'SEND_ACTION',
+  name: actions.ADD_TIMELINE_POST,
+  address,
+  payload: { Describtion, Recipients}
+})
+
+export const addReward = (address, To, Amount) => ({
+  type: 'SEND_ACTION',
+  name: actions.ADD_REWARD,
+  address,
+  payload: { To, Amount }
 })
 
 export const sendStateQuery = (address) => ({

@@ -4,16 +4,19 @@ import TimeLineContainer from './containers/TimeLineContainer';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import InitialScreen from "./containers/InitialScreen"
-import {sendStateQuery} from './actions'
+import CustomizedSnackbars from "./components/CustomizedSnackbars"
+import {sendStateQuery, closeSnackbar} from './actions'
 
 class App extends Component {
 
   constructor(props){
     super(props)
-    this.state = {contractsLatest : false};
+    this.state = {contractsLatest : false, open: true};
+    console.log(props)
+    this.getLatestState()
   }
 
-  getContractsState = (address) => {
+  getContractState = (address) => {
     const { dispatch } = this.props
     dispatch(sendStateQuery(address))
   }
@@ -24,19 +27,23 @@ class App extends Component {
       if(contract.address !== null) 
         this.getContractState(contract.address)
     });
-    this.setState({contractsLatest: true})
+    // this.setState({contractsLatest: true})
   }
-  
+
+  closeSnackbar = () => {
+    const { dispatch } = this.props
+    dispatch(closeSnackbar())
+  }
 
   render(){
+    console.log(this.props)
     let content = <InitialScreen/>
-    if(this.props.info.initialized) {
+    if(this.props.info.initialized) 
       content = <TimeLineContainer variant="contained" color="primary"/>
-      
-    }
-    
+
     return (
       <ThemeProvider theme={theme}>
+        <CustomizedSnackbars {...this.props.snackbar} closeSnack={this.closeSnackbar}/>
         {content}
       </ThemeProvider>
     );
@@ -45,6 +52,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   info: state.info,
+  snackbar: state.snackbar,
 })
 
 const theme = createMuiTheme({
