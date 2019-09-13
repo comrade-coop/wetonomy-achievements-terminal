@@ -7,6 +7,7 @@
       rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <script src="https://kit.fontawesome.com/1a85af8f55.js"></script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -50,16 +51,7 @@
     <script>
       function StrongForce__receiveActionFromNative(result){
         const updated = JSON.parse(result).contracts[0]
-        const contract = window.store.getState().info.contracts.find( (item) => 
-          item.address == updated.address
-        )
-        if(contract) {
-          // console.log(result)
-          window.store.dispatch({type: "CONTRACT_STATE", contract: {...contract,state: updated.state}})
-        }
-        if(updated.state.Type.includes("Wetonomy.Achievements.Achievement, Achievements,")){
-          window.store.dispatch({type: "UPDATE_TIMELINE_POST", post: {address: updated.address,...updated.state.State}})
-        } 
+        window.store.dispatch({type: "CONTRACT_STATE", contract: {address: updated.address,state: updated.state}})
       }
 
       function StrongForce__receiveQueryFromNative(result){
@@ -70,16 +62,7 @@
           switch(type){
             case "state":{
               const address = url[3]
-              if(data.result.Type.includes("Wetonomy.Achievements.Achievement, Achievements,"))
-                window.store.dispatch({type: "ADD_TIMELINE_POST", post: {address: address,...data.result.State}})
-              else{
-                const contract = window.store.getState().info.contracts.find( (item) => 
-                  item.address == address
-                )
-                if(contract) {
-                  window.store.dispatch({type: "CONTRACT_STATE", contract: {...contract,state: data.result}})
-                }
-              }
+              window.store.dispatch({type: "CONTRACT_STATE", contract: {address,state: data.result}})
               break;
             }
           }

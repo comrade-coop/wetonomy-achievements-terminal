@@ -35,12 +35,7 @@ class TimeLineContainer extends Component {
 
     // localStorage.clear();
     const length = this.props.info.contracts[0].state.State.Achievements.length
-
-    if(this.state.postsCount !== length){
-      this.setState({postsCount: length})
-      this.props.info.contracts[0].state.State.Achievements.forEach(element => this.getContractState(element));
-    }
-
+    
     const activities = this.props.timelineActivities.map((activity, index) => 
        <TimeLineBox  image = { index%2===0? image1: image2}
       key={length-index} {...activity} name={(length-index)  + " "+ activity.address} addReward={this.onAddReward}/>
@@ -49,7 +44,6 @@ class TimeLineContainer extends Component {
     return (
       <AchieventContainer>
         <TimeLineActions  {...this.state} addPost={this.onAddTimelinePost}/>
-        {/* <div>{length} {this.props.timelineActivities.length}</div> */}
         {activities}
       </AchieventContainer>
         
@@ -58,7 +52,8 @@ class TimeLineContainer extends Component {
 }
 const mapStateToProps = state => ({
   info: state.info,
-  timelineActivities: state.timelineActivities // state.info.contracts[0].state.State.Achievements
+  timelineActivities: state.timelineActivities 
+  // timelineActivities: state.info.contracts[0].state.State.Achievements
 })
 
 const AchieventContainer = styled.div`

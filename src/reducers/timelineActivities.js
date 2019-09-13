@@ -111,7 +111,7 @@ const handleAddPost = (state, post) =>{
     newPost.address = post.address
     newPost.rewardsList = []
     newPost.description = post.Describtion
-    
+
     let reward = 0
     for (var key in post.TokenContributors) {
       reward += parseInt(post.TokenContributors[key][""])

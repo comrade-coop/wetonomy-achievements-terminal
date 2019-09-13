@@ -16,7 +16,7 @@ code {
 
 .active-criteria {
   background: #f6f6f6;
-  color: #2196f3;
+  /* color: #2196f3; */
   font-weight: bold;
 }
 .example-component.show {

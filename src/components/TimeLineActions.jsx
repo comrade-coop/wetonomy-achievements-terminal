@@ -102,7 +102,7 @@ class TimeLineActions extends Component {
           </Action>
         </FlexRow>
           <Content>
-            <FlexRow style={{padding: "0 13px"}}>
+            <FlexRow style={{padding: "0 13px",minHeight: "70px"}}>
               <Input multiline={true} fullWidth={true} autoFocus={false} disableUnderline={true}
                       inputRef={this.textInput}
                       value={this.state.textInput}
@@ -112,12 +112,12 @@ class TimeLineActions extends Component {
             </FlexRow>
             <FlexRow style={{marginTop: "15px"}}>
               <PostButtonBox>
-                <ButtonH disabled= {false}
-                ref={(buttonDOM) => { this.buttonDOM = buttonDOM; }}
-                color="primary" variant="contained"  onClick = {this.handleAddPost}>
+                <Button disabled= {false}
+                    ref={(buttonDOM) => { this.buttonDOM = buttonDOM; }}
+                    color="primary" variant="contained"  onClick = {this.handleAddPost}>
                     <span style={{textTransform: "none"}}>  Post {this._getActivity(this.state.timeline)}</span>
                   <Icon>keyboard_arrow_right</Icon>
-                </ButtonH>
+                </Button>
               </PostButtonBox>
               {this.state.timeline === TimeLineTypes.Reward ? 
               <CriteriaRow>
@@ -169,7 +169,7 @@ const CriteriaRow = styled.div`
 
 const ButtonH = styled(Button)`
   :focus{
-    background:#2196f3 !important;
+    // background:#2196f3 !important;
   }
 `
 

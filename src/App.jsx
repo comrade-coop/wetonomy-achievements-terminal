@@ -36,6 +36,7 @@ class App extends Component {
   }
 
   render(){
+    // localStorage.clear();
     console.log(this.props)
     let content = <InitialScreen/>
     if(this.props.info.initialized) 
@@ -57,12 +58,19 @@ const mapStateToProps = state => ({
 
 const theme = createMuiTheme({
   palette: {
+    // primary: {
+    //   light: '#93bbff',
+    //   main: '#2196f3',
+    //   dark: '#0069c0',
+    //   contrastText: '#fff',
+    // },
     primary: {
-      light: '#6ec6ff',
-      main: '#2196f3',
-      dark: '#0069c0',
+      light: '#e9b3ca',
+      main: '#ec407a',
+      dark: '#c13271',
       contrastText: '#fff',
     },
+    
     secondary: {
       light: '#ff7961',
       main: '#f44336',

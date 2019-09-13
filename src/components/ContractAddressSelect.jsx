@@ -1,15 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 
 const ContractAddressSelect = (props) => {
+  const theme = useTheme();
+  const lightColor = theme.palette.primary.light;
   let addresses = []
   let name
   if(props.contract) {
     name = props.contract.name
     addresses = props.contract.avaiableAddresses.map((address, index) =>  
       <FlexButton onClick={()=>props.handleAddressSelect(props.contract, address)} color="primary" key={index}>
-        <Reward>{index+1}</Reward><ContractAddress style={{textTransform: "none"}}>{address}</ContractAddress>
+        <Reward style={{background: lightColor}}>{index+1}</Reward><ContractAddress style={{textTransform: "none"}}>{address}</ContractAddress>
       </FlexButton>
     )
   }
@@ -33,7 +36,6 @@ const FlexButton = styled(Button)`
 const Reward = styled.div`
   margin: -1px;
 	border-radius: 50px;
-	background: #93bbff;
   height: 35px;
   color:white;
   width: 35px;

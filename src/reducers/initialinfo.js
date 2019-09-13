@@ -29,32 +29,32 @@ export const initialState = {
       subContractFieldName: "AllowanceToken",
       state: {}
     }],
-  initialized: false
+    initialized: false
 
-}
-
-const initialInfo = (state = initialState, action) => {
-  switch (action.type) {
-    case "INITIAL_INFO": return initialState
-    case "ADDRESS_SELECT": return contractAddressSelect(state, action.contract)
-    case "CONTRACTS_INITIALIZED": return {...state, initialized: true}
-    case "CONTRACT_STATE": return contractState(state, action.contract)
-    default:
-      return state
   }
-}
-const contractAddressSelect = (state, contract) => {
-  let temp = state.contracts.map((element) => {
-    if(element.name !== contract.name) return element
-    else return contract
-  })
-  return {...state, contracts: temp}
-}
 
-const contractState = (state, contract) => {
+  const initialInfo = (state = initialState, action) => {
+    switch (action.type) {
+      case "INITIAL_INFO": return initialState
+      case "ADDRESS_SELECT": return contractAddressSelect(state, action.contract)
+      case "CONTRACTS_INITIALIZED": return {...state, initialized: true}
+      case "CONTRACT_STATE": return contractState(state, action.contract)
+      default:
+        return state
+    }
+  }
+  const contractAddressSelect = (state, contract) => {
+    let temp = state.contracts.map((element) => {
+      if(element.name !== contract.name) return element
+      else return contract
+    })
+    return {...state, contracts: temp}
+  }
+
+  const contractState = (state, contract) => {
   let temp = state.contracts.map((element) => {
-    if(element.name !== contract.name) return element
-    else return contract
+    if(element.address !== contract.address) return element
+    else return {...element,...contract}
   })
   
   return {...state, contracts: temp}

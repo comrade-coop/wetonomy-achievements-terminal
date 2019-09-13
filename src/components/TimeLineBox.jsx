@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import styled  from 'styled-components'
 import { Button, Collapse, Input } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
+import { useTheme } from '@material-ui/core/styles';
+import Trello  from '../assets/trello-brands.svg'
 
 export const DEFAULT_PROFILE_PICTURE = "https://www.chsbuffalo.org/sites/default/files/styles/crop_230x230/public/default_images/profile-default_0.jpg?itok=DTiAzsNA"
 
@@ -11,6 +13,25 @@ export const TimeLineTypes= {
 	Reward: 2,
 	Proposition: 3
 }
+
+const RewardRow = (props) =>{
+  console.log(props)
+  const theme = useTheme();
+  const lightColor = theme.palette.primary.light;
+  return props.rewards.map((element, index) => 
+			<CollapseFlexRow key={index}>
+				<Reward style={{background: lightColor, height:"35px"}}>+{element.reward}</Reward>
+          <ImgBox><RoundedImg width="35" height="35" src={element.image || DEFAULT_PROFILE_PICTURE} alt=""/></ImgBox>
+        <Heading style={{height:"35px"}}>{element.comment}</Heading>
+			</CollapseFlexRow>
+		)
+    
+}
+
+// const alo = () => {
+//   const theme = useTheme();
+//   return theme.palette.primary.light;
+// }
 
 class TimeLineBox extends Component {
 
@@ -38,16 +59,6 @@ class TimeLineBox extends Component {
 			case TimeLineTypes.Proposition: return <ButtonContent style={{textTransform: "none"}}>Do It <Icon>arrow_right</Icon></ButtonContent>
 			default: return ""
 			}
-	}
-
-	_generateRewardsList = (rewards) => {
-		return rewards.map((element, index) => 
-			<CollapseFlexRow key={index}>
-				<Reward style={{height:"35px"}}>+{element.reward}</Reward>
-				<ImgBox><RoundedImg width="35" height="35" src={element.image || DEFAULT_PROFILE_PICTURE} alt=""/></ImgBox>
-				<Heading style={{height:"35px"}}>{element.comment}</Heading>
-			</CollapseFlexRow>
-		)
 	}
 
 	handleStarButtonClick = () => {
@@ -98,12 +109,14 @@ class TimeLineBox extends Component {
 						<RewardCountButton style={{textTransform: "none"}}> {this.props.rewardsList.length} Rewards</RewardCountButton>
 					</div>
 					<Button color="primary">
-						<RoundedImg width="25" height="25" src="https://camo.githubusercontent.com/a1397f6a4427587bf9305ac6527a09a41763ce9e/68747470733a2f2f706e672e69636f6e73382e636f6d2f636f6c6f722f313630302f7472656c6c6f"/>
+						<i className="fab fa-trello"></i>
+
+						{/* <img  width="20" height="20" src={Trello} alt="" /> */}
 						<span style={{textTransform: "none"}}>&nbsp;Trello</span>
 					</Button>
 				</FlexRow>
 				<Collapse in={this.state.open}>
-					{this._generateRewardsList(this.props.rewardsList)}
+					<RewardRow rewards={this.props.rewardsList}/>
 					<CollapseFlexRow>
             <Input fullWidth={true} autoFocus={false}
                 placeholder={"+500"}
@@ -191,7 +204,7 @@ const CollapseFlexRow = styled(FlexRow)`
 
 const Reward = styled.div`
 	border-radius: 50px;
-  background: #93bbff;
+  background: #e9b3ca;
   min-width: 40px;
 	height: 40px;
 	color: white;
