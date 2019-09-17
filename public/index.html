@@ -49,12 +49,12 @@
     //   }
     // }) -->
     <script>
-      function StrongForce__receiveActionFromNative(result){
-        const updated = JSON.parse(result).contracts[0]
+      function StrongForce__receiveStateUpdateFromNative(result){
+        const updated = JSON.parse(result)
         window.store.dispatch({type: "CONTRACT_STATE", contract: {address: updated.address,state: updated.state}})
       }
 
-      function StrongForce__receiveQueryFromNative(result){
+      function StrongForce__receiveQueryResponseFromNative(result){
         const data = JSON.parse(result)
         if(data.result){
           const url = data.query.url.split('/')

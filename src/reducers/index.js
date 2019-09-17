@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import timelineActivities from './timelineActivities'
+import timeline from './timeline'
 import info from './initialinfo'
 import snackbar from './snackbar'
 
 export default combineReducers({
-  timelineActivities,
+  timeline,
   info,
   snackbar
 })

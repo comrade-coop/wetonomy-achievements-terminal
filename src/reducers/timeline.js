@@ -4,7 +4,7 @@ const skalata = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayn
 
 const initialState = [
   // {
-  //   address: "bjmJv9o",
+  //   address: "Test123",
   //   reward: 125,
   //   type: TimeLineTypes.Achievement,
   //   description: " It is a long established fact that a reader will be distracted by the readable content of ",
@@ -18,7 +18,7 @@ const initialState = [
   //     {
   //       reward: 50,
   //       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2%2C_2013.jpg/220px-Dwayne_Johnson_2%2C_2013.jpg",
-  //       comment: "Lorem ipsum",
+  //       comment: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
   //     }
   //   ]
   // }
@@ -63,7 +63,7 @@ const initialState = [
 //   }
 // ]
 
-const timelineActivities = (state = initialState, action) => {
+const timeline = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TIMELINE_POST':
       return handleAddPost(state, {
@@ -128,4 +128,4 @@ const handleAddPost = (state, post) =>{
   return state
 }
   
-export default timelineActivities
+export default timeline

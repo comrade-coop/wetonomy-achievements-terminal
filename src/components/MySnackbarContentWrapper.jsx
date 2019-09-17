@@ -26,7 +26,8 @@ const useStyles1 = makeStyles(theme => ({
     backgroundColor: theme.palette.error.dark,
   },
   info: {
-    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.main,
+    backgroundColor: "#fff",
   },
   warning: {
     backgroundColor: amber[700],
@@ -52,6 +53,7 @@ const MySnackbarContentWrapper = (props) => {
   return (
     <SnackbarContent
       className={clsx(classes[variant], className)}
+      classes={{root: "tiny-shadow"}}
       aria-describedby="client-snackbar"
       message={
         <span id="client-snackbar" className={classes.message}>

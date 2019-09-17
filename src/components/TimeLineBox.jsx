@@ -4,7 +4,6 @@ import styled  from 'styled-components'
 import { Button, Collapse, Input } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import { useTheme } from '@material-ui/core/styles';
-import Trello  from '../assets/trello-brands.svg'
 
 export const DEFAULT_PROFILE_PICTURE = "https://www.chsbuffalo.org/sites/default/files/styles/crop_230x230/public/default_images/profile-default_0.jpg?itok=DTiAzsNA"
 
@@ -15,14 +14,13 @@ export const TimeLineTypes= {
 }
 
 const RewardRow = (props) =>{
-  console.log(props)
   const theme = useTheme();
   const lightColor = theme.palette.primary.light;
   return props.rewards.map((element, index) => 
 			<CollapseFlexRow key={index}>
 				<Reward style={{background: lightColor, height:"35px"}}>+{element.reward}</Reward>
           <ImgBox><RoundedImg width="35" height="35" src={element.image || DEFAULT_PROFILE_PICTURE} alt=""/></ImgBox>
-        <Heading style={{height:"35px"}}>{element.comment}</Heading>
+        <Heading style={{height:"35px", overflow: "hidden", textOverflow: "ellipsis"}}>{element.comment}</Heading>
 			</CollapseFlexRow>
 		)
     
@@ -106,25 +104,26 @@ class TimeLineBox extends Component {
 				<FlexRow>
 					<div style={{marginLeft:"-8px"}}>
 						<Button color="primary" onClick={this.handleStarButtonClick}>{this._getStarButton(this.props)}</Button>
-						<RewardCountButton style={{textTransform: "none"}}> {this.props.rewardsList.length} Rewards</RewardCountButton>
+						<RewardsCount> {this.props.rewardsList.length} Rewards</RewardsCount>
 					</div>
-					<Button color="primary">
-						<i className="fab fa-trello"></i>
-
-						{/* <img  width="20" height="20" src={Trello} alt="" /> */}
-						<span style={{textTransform: "none"}}>&nbsp;Trello</span>
+					<Button>
+						
+						<TrelloSpan style={{textTransform: "none"}}>
+              <i className="fab fa-trello"></i>&nbsp;Trello
+            </TrelloSpan>
 					</Button>
 				</FlexRow>
 				<Collapse in={this.state.open}>
 					<RewardRow rewards={this.props.rewardsList}/>
 					<CollapseFlexRow>
-            <Input fullWidth={true} autoFocus={false}
-                placeholder={"+500"}
-                value={this.state.textInput}
-                onChange={this.handleChange} 
-                onFocus={ this.onInputFocus}
+							<Input fullWidth={true} autoFocus={false}
+								placeholder={"+500"}
+								value={this.state.textInput}
+								onChange={this.handleChange} 
+								onFocus={ this.onInputFocus}
 								disableUnderline={true}/>
-						<Button onClick={this.handleAddReward} color="primary" variant="contained" style={{textTransform: "none"}}>Give</Button>
+            <Button onClick={this.handleAddReward} color="primary" variant="contained"
+                style={{textTransform: "none", boxShadow: "none"}}>Give</Button>
 					</CollapseFlexRow>
 				</Collapse>
 			</Achievement>
@@ -139,6 +138,10 @@ TimeLineBox.propTypes = {
 	reward: PropTypes.number.isRequired,
 	rewardsList: PropTypes.array.isRequired,
 }
+const TrelloSpan = styled.div`
+  opacity: 0.6;
+  font-weight: 600;
+` 
 
 const ButtonContent = styled.div`
 	display: flex;
@@ -154,8 +157,13 @@ const Description = styled.div`
 	opacity: 0.7;
 `
 
-const RewardCountButton = styled(Button)`
-	opacity: 0.7;
+const RewardsCount = styled.span`
+  flex-direction: row;
+	justify-content: center;
+	align-items: center;
+  display: inline-block;
+  opacity: 0.7;
+  margin-left: 8px;
 `
 
 const Heading = styled.div`
@@ -223,7 +231,7 @@ const Achievement = styled.div`
 	justify-content: space-between;
 	padding-top: 5px;
 	width: 100%;
-	min-height: 160px;
+	// min-height: 160px;
 	margin-top: 20px;
 	-webkit-box-shadow: 0px 0px 4px -1px #e0e0e0;
 	-moz-box-shadow: 0px 0px 4px -1px #e0e0e0;

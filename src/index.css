@@ -10,16 +10,15 @@ code {
     monospace;
 }
 
-.all-active-criterias {
-  /* background: #93bbff; */
+.active-criteria {
+  color: #aeaeae !important;
 }
 
-.active-criteria {
-  background: #f6f6f6;
-  /* color: #2196f3; */
-  font-weight: bold;
-}
 .example-component.show {
   opacity: 1;
   visibility: visible; 
+}
+
+.tiny-shadow{
+  box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.3) !important;
 }

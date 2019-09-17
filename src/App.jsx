@@ -68,12 +68,13 @@ const theme = createMuiTheme({
       light: '#e9b3ca',
       main: '#ec407a',
       dark: '#c13271',
+      disabled: '#f38baf',
       contrastText: '#fff',
     },
     
     secondary: {
       light: '#ff7961',
-      main: '#f44336',
+      main: '#a6a6a6',
       dark: '#ba000d',
       contrastText: '#000',
     },

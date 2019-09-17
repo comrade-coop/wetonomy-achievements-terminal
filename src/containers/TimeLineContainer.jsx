@@ -5,6 +5,8 @@ import TimeLineBox from '../components/TimeLineBox'
 import TimeLineActions from '../components/TimeLineActions'
 import { addTimelinePost, addReward, sendStateQuery }  from '../actions'
 
+
+
 class TimeLineContainer extends Component {  
   constructor(props){
     super(props)
@@ -30,14 +32,14 @@ class TimeLineContainer extends Component {
 
   render() {
     console.log(this.props)
-    var image1 = "https://pbs.twimg.com/profile_images/526334387688710145/zXycT5FL.jpeg"
-    var image2 = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2%2C_2013.jpg/220px-Dwayne_Johnson_2%2C_2013.jpg"
+    var image1 = "https://www.statnews.com/wp-content/uploads/2019/07/GettyImages-1130598362-645x645.jpg"//"https://pbs.twimg.com/profile_images/526334387688710145/zXycT5FL.jpeg"
+    var image2 = "https://cdn.discordapp.com/attachments/501438478358151178/623468777253765120/download.png"
 
     // localStorage.clear();
     const length = this.props.info.contracts[0].state.State.Achievements.length
     
-    const activities = this.props.timelineActivities.map((activity, index) => 
-       <TimeLineBox  image = { index%2===0? image1: image2}
+    const activities = this.props.timeline.map((activity, index) => 
+       <TimeLineBox  image = { (length-index)%2===0? image1: image2}
       key={length-index} {...activity} name={(length-index)  + " "+ activity.address} addReward={this.onAddReward}/>
     )
     
@@ -52,8 +54,8 @@ class TimeLineContainer extends Component {
 }
 const mapStateToProps = state => ({
   info: state.info,
-  timelineActivities: state.timelineActivities 
-  // timelineActivities: state.info.contracts[0].state.State.Achievements
+  timeline: state.timeline 
+  // timeline: state.info.contracts[0].state.State.Achievements
 })
 
 const AchieventContainer = styled.div`
